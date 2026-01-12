@@ -10,6 +10,10 @@ This project is intended for educational purposes and to facilitate collaborativ
 
 ## Project Status
 
+![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
+![Static Badge](https://img.shields.io/badge/Total%3A-0%25-brightgreen)
+![Static Badge](https://img.shields.io/badge/Tests%3A-failing-red)
+
 - **Initial setup:** repository created, basic structure in place  
 - **Progress:** currently experimenting with identifying memory structures and game logic  
 - **Limitations:** this is a personal project; I have limited experience with reverse engineering and C++/ARM code. Contributions and guidance are highly welcome.
