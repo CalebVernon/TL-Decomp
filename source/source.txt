@@ -1,0 +1,1 @@
+make a new folder where non-tomodachi life code should be put in - eg. audio or graphics whatever
