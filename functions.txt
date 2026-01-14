@@ -1,6 +1,16 @@
-/*File for identifying files and functions from ghidra names and params*/
+/* File for identifying files and functions from ghidra names and params */
 
-
-FUN_00001034(undefined4 param_1,undefined4 param_2,uint param_3,code *param_4)
-
+FUN_00001034(undefined4 param_1, undefined4 param_2, uint param_3, code *param_4)
 core/GenericSort.cpp -- GenericSort.h
+
+FUN_00001232(uint param_1, uint param_2, uint param_3, code *param_4)
+core/GenericSort.cpp -- GenericSort.h
+
+FUN_000012bc(undefined4 param_1, undefined4 param_2)
+core/GenericSort.cpp -- GenericSort.h
+
+FUN_000012cc(int param_1, char param_2)
+core/StringSearch.cpp -- StringSearch.h
+
+FUN_000012e2(char *param_1, char *param_2)
+core/StringSearch.cpp -- StringSearch.h

@@ -1,9 +1,9 @@
+// GenericSort.h
 #pragma once
-#include <cstdint>
 #include <cstddef>
+#include <functional>
 
-// Comparison function type, like qsort: returns >0 if a > b, 0 if equal, <0 if a < b
-using CompareFunc = int(*)(void* a, void* b);
+using CompareFunc = std::function<int(const void*, const void*)>;
 
-void GenericSort(void* data, void* aux, std::size_t elementSize, CompareFunc cmp);
-
+void InsertionSort(void* base, std::size_t count, std::size_t elementSize, CompareFunc cmp);
+void QuickSort(void* base, std::size_t count, std::size_t elementSize, CompareFunc cmp);
