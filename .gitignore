@@ -2,5 +2,5 @@ build/
 __pycache__/
 .cache/
 
-code.bin
+*.bin
 compile_commands.json
