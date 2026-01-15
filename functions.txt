@@ -14,3 +14,7 @@ core/StringSearch.cpp -- StringSearch.h
 
 FUN_000012e2(char *param_1, char *param_2)
 core/StringSearch.cpp -- StringSearch.h
+
+
+
+/* Most functions are named in Ghidra */
