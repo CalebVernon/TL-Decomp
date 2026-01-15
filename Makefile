@@ -1,18 +1,16 @@
 # ==============================
-# TL-Decomp Multi-Platform Makefile
+# TL-Decomp Auto PC/3DS Makefile (Windows-safe)
 # ==============================
 
-# Configurable variables
-REGION := eu          # change to your region if needed
-PLATFORM ?= pc        # default platform: pc (use PLATFORM=3ds make to build 3ds)
+REGION := eu
+PLATFORM ?= pc
 BUILD_DIR := build/$(REGION)_$(PLATFORM)
-SRC_DIR := source
 BIN := tomodachi
 
-# Compiler flags
+# Compiler & flags
 ifeq ($(PLATFORM),pc)
     CC := g++
-    CFLAGS := -std=c++17 -O2 -Wall -Iinclude
+    CFLAGS := -std=c++17 -O2 -Wall -Iinclude -mconsole
     EXT := exe
 else ifeq ($(PLATFORM),3ds)
     CC := $(DEVKITARM)/bin/arm-none-eabi-g++
@@ -22,28 +20,34 @@ else
     $(error Unknown platform: $(PLATFORM))
 endif
 
-# Source files
-SRCS := $(wildcard $(SRC_DIR)/**/*.cpp) $(wildcard $(SRC_DIR)/*.cpp)
-OBJS := $(SRCS:%.cpp=$(BUILD_DIR)/%.o)
+# ----------------------------
+# Auto-detect all .cpp files recursively under Source/
+# ----------------------------
+SRCS := $(shell find Source -name '*.cpp' 2>/dev/null)
+
+# Build object file list
+OBJS := $(addprefix $(BUILD_DIR)/, $(SRCS:.cpp=.o))
 
 # Default target
 all: $(BUILD_DIR)/$(BIN).$(EXT)
 
-# Build directory
+# Ensure build directory exists
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-# Compile object files
+# Compile all sources manually (Windows-safe)
 $(BUILD_DIR)/%.o: %.cpp | $(BUILD_DIR)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Link
-$(BUILD_DIR)/$(BIN).$(EXT): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+# Link
+$(BUILD_DIR)/$(BIN).$(EXT): $(OBJS) | $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(OBJS) -lraylib -lopengl32 -lgdi32 -lwinmm -o $@
+
 
 # Clean
 clean:
-	rm -rf build/*
+	-rmdir /s /q build 2>nul || rm -rf build/*
 
 .PHONY: all clean
