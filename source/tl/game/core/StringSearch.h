@@ -2,4 +2,4 @@
 #pragma once
 
 char* FindCharInString(int strStart, char target);
-char* my_strstr(char* haystack, char* needle);
+char* StrStr(char* haystack, char* needle);
