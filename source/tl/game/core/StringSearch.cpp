@@ -35,3 +35,23 @@ char* StrStr(char* haystack, char* needle)
 
     return nullptr;
 }
+typedef signed char s8;
+typedef unsigned char u8;
+
+void strcat_manual(s8* destination, s8* source) {
+    s8* var_r1;
+    u8 temp_r3;
+    s8* var_r2;
+
+    var_r1 = source;
+    var_r2 = destination - 1;
+    do {
+        var_r2 += 1;
+    } while (*var_r2 != 0);
+    do {
+        temp_r3 = (u8) *var_r1;
+        var_r1 += 1;
+        *var_r2 = temp_r3;
+        var_r2 += 1;
+    } while (temp_r3 != 0);
+}
